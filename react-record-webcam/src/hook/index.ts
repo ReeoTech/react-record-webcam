@@ -70,7 +70,7 @@ export function useRecordWebcam(
     }
   };
 
-  const stop = async (callback: Function) => {
+  const stop = async (callback?: Function) => {
     try {
       if (recorder?.stopRecording) {
         await recorder.stopRecording();
