@@ -94,7 +94,8 @@ export function useRecordWebcam(
     }
   };
 
-  const start = async () => {
+  const start = async (endCallBack?: Function) => {
+
     try {
       if (recorder?.startRecording) {
         await recorder.startRecording();
@@ -102,7 +103,7 @@ export function useRecordWebcam(
         if (options?.recordingLength) {
           const length = options.recordingLength * 1000;
           await new Promise((resolve) => setTimeout(resolve, length));
-          await stop();
+          await stop(endCallBack);
           stopStream();
         }
         return;
