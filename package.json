@@ -2,11 +2,11 @@
   "private": true,
   "workspaces": [
     "demo",
-    "react-record-webcam"
+    "reeo-react-record-webcam"
   ],
   "scripts": {
-    "start:project": "yarn workspace react-record-webcam start",
-    "build:project": "yarn workspace react-record-webcam build",
+    "start:project": "yarn workspace reeo-react-record-webcam start",
+    "build:project": "yarn workspace reeo-react-record-webcam build",
     "start:demo": "yarn workspace demo start"
   },
   "devDependencies": {

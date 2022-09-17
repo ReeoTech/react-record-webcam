@@ -38,5 +38,5 @@ export const BUTTON_LABELS = {
 } as const;
 
 export const NAMESPACES = {
-  CSS: 'react-record-webcam',
+  CSS: 'reeo-react-record-webcam',
 } as const;

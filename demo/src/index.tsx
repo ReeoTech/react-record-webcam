@@ -4,12 +4,12 @@ import {
   RecordWebcam,
   useRecordWebcam,
   CAMERA_STATUS,
-} from 'react-record-webcam';
+} from 'reeo-react-record-webcam';
 import type {
   WebcamRenderProps,
   RecordWebcamOptions,
   RecordWebcamHook,
-} from 'react-record-webcam';
+} from 'reeo-react-record-webcam';
 import './styles.css';
 
 const OPTIONS: RecordWebcamOptions = {
@@ -96,12 +96,11 @@ const App = () => {
         <video
           ref={recordWebcam.webcamRef}
           style={{
-            display: `${
-              recordWebcam.status === CAMERA_STATUS.OPEN ||
-              recordWebcam.status === CAMERA_STATUS.RECORDING
+            display: `${recordWebcam.status === CAMERA_STATUS.OPEN ||
+                recordWebcam.status === CAMERA_STATUS.RECORDING
                 ? 'block'
                 : 'none'
-            }`,
+              }`,
           }}
           autoPlay
           muted
@@ -109,9 +108,8 @@ const App = () => {
         <video
           ref={recordWebcam.previewRef}
           style={{
-            display: `${
-              recordWebcam.status === CAMERA_STATUS.PREVIEW ? 'block' : 'none'
-            }`,
+            display: `${recordWebcam.status === CAMERA_STATUS.PREVIEW ? 'block' : 'none'
+              }`,
           }}
           autoPlay
           muted
