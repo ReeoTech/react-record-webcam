@@ -26,11 +26,9 @@ export function useRecordWebcam(
     if (options) {
       setRecorderOptions({
         ...RECORDER_OPTIONS,
-        mimeType: `video/${options.fileType || 'mp4'};codecs=${
-          options?.codec?.video || options.fileType === 'webm' ? 'vp8' : 'avc'
-        },${
-          options?.codec?.audio || options.fileType === 'webm' ? 'opus' : 'aac'
-        }`,
+        mimeType: `video/${options.fileType || 'mp4'};codecs=${options?.codec?.video || options.fileType === 'webm' ? 'vp8' : 'avc'
+          },${options?.codec?.audio || options.fileType === 'webm' ? 'opus' : 'aac'
+          }`,
         width: options.width || RECORDER_OPTIONS.width,
         height: options.height || RECORDER_OPTIONS.height,
         aspectRatio: options?.aspectRatio || RECORDER_OPTIONS.aspectRatio,
@@ -72,7 +70,7 @@ export function useRecordWebcam(
     }
   };
 
-  const stop = async () => {
+  const stop = async (callback: Function) => {
     try {
       if (recorder?.stopRecording) {
         await recorder.stopRecording();
@@ -82,6 +80,10 @@ export function useRecordWebcam(
           previewRef.current.src = preview;
         }
         stopStream();
+        //Send API
+        if (callback) {
+          callback()
+        }
         setStatus(CAMERA_STATUS.PREVIEW);
         return;
       }
@@ -125,9 +127,8 @@ export function useRecordWebcam(
     try {
       if (recorder?.getBlob) {
         const blob = await recorder.getBlob();
-        const filename = `${options?.filename || new Date().getTime()}.${
-          options?.fileType || 'mp4'
-        }`;
+        const filename = `${options?.filename || new Date().getTime()}.${options?.fileType || 'mp4'
+          }`;
         saveFile(filename, blob);
         return;
       }
